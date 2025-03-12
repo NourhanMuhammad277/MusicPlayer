@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="overlay" id="overlay"></div>
     <div class="header">
         <h2>Music Player</h2>
         <input type="text" class="search-bar" placeholder="Search songs or playlists...">
@@ -25,16 +26,16 @@
     <div class="suggested-section">
         <h3>Suggested Songs</h3>
         <div class="suggested-container" id="suggested-songs">
-            <div class="suggested-item" data-title="Kol Waad" data-artist="Wael Jassar" data-img="kolwaad.jpg" data-audio="Wael Jassar - Koul Waad [ Official Video Clip ] _ وائل جسار - كل وعد.mp3">
-                <img src="kolwaad.jpg" alt="Song 1">
+            <div class="suggested-item" data-title="Kol Waad" data-artist="Wael Jassar" data-img="Media/kolwaad.jpg" data-audio="Media/Wael Jassar - Koul Waad [ Official Video Clip ] _ وائل جسار - كل وعد.mp3">
+                <img src="Media/kolwaad.jpg" alt="Song 1">
                 <p>Kol Waad - Wael Jassar</p>
             </div>
-            <div class="suggested-item" data-title="Habebe Leh" data-artist="Tula8te" data-img="tul8ate.jpeg" data-audio="habebe-leh.mp3">
-                <img src="tul8ate.jpeg" alt="Song 2">
+            <div class="suggested-item" data-title="Habebe Leh" data-artist="Tula8te" data-img="Media/tul8ate.jpeg" data-audio="Media/habebe-leh.mp3">
+                <img src="Media/tul8ate.jpeg" alt="Song 2">
                 <p>Habebe Leh - Tula8te</p>
             </div>
-            <div class="suggested-item" data-title="Tamali Ma'ak" data-artist="Amr Diab" data-img="tamallima3ak.jpg" data-audio="tamali-maaak.mp3">
-                <img src="tamalli ma3ak.jpg" alt="Song 3">
+            <div class="suggested-item" data-title="Tamali Ma'ak" data-artist="Amr Diab" data-img="Media/tamalli ma3ak.jpg" data-audio="Media/tamali-maaak.mp3">
+                <img src="Media/tamalli ma3ak.jpg" alt="Song 3">
                 <p>Tamali Ma'ak - Amr Diab</p>
             </div>
         </div>
@@ -55,6 +56,22 @@
         <button onclick="prevSong()">⏮ Prev</button>
         <button onclick="nextSong()">⏭ Next</button>
         <button onclick="document.getElementById('music-popup').style.display='none'">Close</button>
+    </div>
+
+    
+    <div id="register-popup" class="popup">
+        <h3>Sign Up / Login</h3>
+        <form id="register-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">Login</button>
+            <button type="button" onclick="closePopup()">Close</button>
+            <p id="error-message">Invalid credentials!</p>
+        </form>
     </div>
     
     <script src="script.js"></script>

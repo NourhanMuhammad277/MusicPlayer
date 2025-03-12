@@ -1,12 +1,64 @@
 
 
-function nextSong() {
-    alert("Next song functionality coming soon!");
+let currentSongIndex = 0; // Track current song index
+let songsList = []; // Array to store songs dynamically
+
+// Function to load songs into an array
+function loadSongsList() {
+    songsList = Array.from(document.querySelectorAll(".suggested-item")).map((item, index) => ({
+        index: index,
+        title: item.dataset.title,
+        artist: item.dataset.artist,
+        img: item.dataset.img,
+        audio: item.dataset.audio
+    }));
 }
 
-function prevSong() {
-    alert("Previous song functionality coming soon!");
+// Function to play a song
+function playSong(index) {
+    if (songsList.length === 0) return;
+
+    currentSongIndex = index;
+    const song = songsList[index];
+
+    document.getElementById("popup-title").innerText = song.title;
+    document.getElementById("popup-artist").innerText = song.artist;
+    document.getElementById("popup-img").src = song.img;
+    document.getElementById("popup-audio").src = song.audio;
+    document.getElementById("popup-audio").play();
+    document.getElementById("music-popup").style.display = "block";
 }
+
+// Function to play next song
+function nextSong() {
+    if (songsList.length === 0) return;
+
+    currentSongIndex = (currentSongIndex + 1) % songsList.length;
+    playSong(currentSongIndex);
+}
+
+// Function to play previous song
+function prevSong() {
+    if (songsList.length === 0) return;
+
+    currentSongIndex = (currentSongIndex - 1 + songsList.length) % songsList.length;
+    playSong(currentSongIndex);
+}
+
+// Initialize songs list when the page loads
+window.onload = function () {
+    loadSongsList();
+    updateLikedSongs(); // Keep existing liked songs logic
+};
+
+// Add event listeners to suggested songs
+document.querySelectorAll(".suggested-item").forEach((item, index) => {
+    item.addEventListener("click", () => {
+        loadSongsList(); // Reload songs list in case it's updated
+        playSong(index);
+    });
+});
+
 
 document.querySelectorAll(".suggested-item").forEach(item => {
     item.addEventListener("click", () => {
@@ -155,3 +207,31 @@ document.querySelector(".search-bar").addEventListener("input", function (e) {
         }
     });
 });
+const popup = document.getElementById("register-popup");
+        const overlay = document.getElementById("overlay");
+        const mainContent = document.getElementById("main-content");
+
+        document.getElementById("register").addEventListener("click", function() {
+            popup.style.display = "block";
+            overlay.style.display = "block";
+            mainContent.classList.add("blur");
+        });
+
+        function closePopup() {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+            mainContent.classList.remove("blur");
+        }
+
+        document.getElementById("register-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === "user1" && password === "0") {
+                alert("Login successful!");
+                closePopup();
+            } else {
+                document.getElementById("error-message").style.display = "block";
+            }
+        });
