@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h2>Music Player</h2>
+        <input type="text" class="search-bar" placeholder="Search songs or playlists...">
+        <button id="register">🔐 Register</button>
+    </div>
+    
+    <div class="playlist-section">
+        <h3>Suggested Playlists</h3>
+        <div class="playlist-container" id="playlist-container"></div>
+        <div class="buttons">
+            <button id="create-playlist">➕ Create Playlist</button>
+            <button id="delete-playlist">🗑️ Delete Playlist</button>
+        </div>
+    </div>
+
+    <div class="suggested-section">
+        <h3>Suggested Songs</h3>
+        <div class="suggested-container" id="suggested-songs">
+            <div class="suggested-item" data-title="Kol Waad" data-artist="Wael Jassar" data-img="kolwaad.jpg" data-audio="Wael Jassar - Koul Waad [ Official Video Clip ] _ وائل جسار - كل وعد.mp3">
+                <img src="kolwaad.jpg" alt="Song 1">
+                <p>Kol Waad - Wael Jassar</p>
+            </div>
+            <div class="suggested-item" data-title="Habebe Leh" data-artist="Tula8te" data-img="tul8ate.jpeg" data-audio="habebe-leh.mp3">
+                <img src="tul8ate.jpeg" alt="Song 2">
+                <p>Habebe Leh - Tula8te</p>
+            </div>
+            <div class="suggested-item" data-title="Tamali Ma'ak" data-artist="Amr Diab" data-img="tamallima3ak.jpg" data-audio="tamali-maaak.mp3">
+                <img src="tamalli ma3ak.jpg" alt="Song 3">
+                <p>Tamali Ma'ak - Amr Diab</p>
+            </div>
+        </div>
+    </div>
+    <div class="liked-section" id="liked-section">
+        <h3>Liked Songs</h3>
+        <div class="liked-container" id="liked-container"></div>
+    </div>
+    <div id="music-popup" class="popup">
+        <button id="like-button">
+            <span id="like-icon">🤍</span> Like
+        </button>
+        
+        <img id="popup-img" src="" alt="Song Cover">
+        <h3 id="popup-title"></h3>
+        <p id="popup-artist"></p>
+        <audio id="popup-audio" controls></audio>
+        <button onclick="prevSong()">⏮ Prev</button>
+        <button onclick="nextSong()">⏭ Next</button>
+        <button onclick="document.getElementById('music-popup').style.display='none'">Close</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
