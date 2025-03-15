@@ -184,7 +184,7 @@ window.onload = function () {
 };
 document.querySelector(".search-bar").addEventListener("input", function (e) {
     const searchQuery = e.target.value.toLowerCase();
-    const allSongs = document.querySelectorAll(".suggested-item, .liked-item");
+    const allSongs = document.querySelectorAll(".suggested-item, .liked-item , .artist-item, .album-item");
     const allPlaylists = document.querySelectorAll(".playlist p");
 
     // Filter songs (Suggested + Liked)
