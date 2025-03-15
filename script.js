@@ -197,7 +197,6 @@ document.querySelector(".search-bar").addEventListener("input", function (e) {
         }
     });
 
-    // Filter Playlists
     allPlaylists.forEach(playlist => {
         const playlistName = playlist.innerText.toLowerCase();
         if (playlistName.includes(searchQuery)) {
@@ -207,31 +206,77 @@ document.querySelector(".search-bar").addEventListener("input", function (e) {
         }
     });
 });
-const popup = document.getElementById("register-popup");
-        const overlay = document.getElementById("overlay");
-        const mainContent = document.getElementById("main-content");
+const overlay = document.getElementById("overlay");
+const mainContent = document.getElementById("main-content");
 
-        document.getElementById("register").addEventListener("click", function() {
-            popup.style.display = "block";
-            overlay.style.display = "block";
-            mainContent.classList.add("blur");
-        });
+document.getElementById("register").addEventListener("click", function() {
+    openPopup("register-popup");
+});
 
-        function closePopup() {
-            popup.style.display = "none";
-            overlay.style.display = "none";
-            mainContent.classList.remove("blur");
+function openPopup(id) {
+    document.getElementById(id).style.display = "block";
+    if (overlay) overlay.style.display = "block";
+    if (mainContent) mainContent.classList.add("blur");
+}
+
+function closePopup(id) {
+    document.getElementById(id).style.display = "none";
+    if (overlay) overlay.style.display = "none";
+    if (mainContent) mainContent.classList.remove("blur");
+}
+function closeAllPopups() {
+    document.querySelectorAll('.popup').forEach(popup => {
+        popup.style.display = "none";
+    });
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("main-content").classList.remove("blur"); // Remove blur
+}
+
+document.getElementById("register-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let valid = true;
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    document.getElementById("username-error").style.display = username ? "none" : "block";
+    document.getElementById("password-error").style.display = password ? "none" : "block";
+
+    if (!username || !password) {
+        valid = false;
+    }
+
+    if (valid) {
+        if (username === "user1" && password === "0") {
+            alert("Login successful!");
+            closeAllPopups();
+        } else {
+            document.getElementById("error-message").style.display = "block";
         }
+    }
+});
 
-        document.getElementById("register-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+// Signup Form Validation
+document.getElementById("signup-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let valid = true;
 
-            if (username === "user1" && password === "0") {
-                alert("Login successful!");
-                closePopup();
-            } else {
-                document.getElementById("error-message").style.display = "block";
-            }
-        });
+    const newUsername = document.getElementById("new-username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const newPassword = document.getElementById("new-password").value.trim();
+    const confirmPassword = document.getElementById("confirm-password").value.trim();
+
+    document.getElementById("new-username-error").style.display = newUsername ? "none" : "block";
+    document.getElementById("email-error").style.display = email.includes("@") ? "none" : "block";
+    document.getElementById("new-password-error").style.display = newPassword ? "none" : "block";
+    document.getElementById("confirm-password-error").style.display = (newPassword === confirmPassword && confirmPassword) ? "none" : "block";
+
+    if (!newUsername || !email.includes("@") || !newPassword || newPassword !== confirmPassword) {
+        valid = false;
+    }
+
+    if (valid) {
+        alert("Signup successful!");
+        closeAllPopups();
+    }
+});
