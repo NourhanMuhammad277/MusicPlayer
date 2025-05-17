@@ -3,139 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player - Home</title>
+    <title>- Music Player</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="overlay" id="overlay"></div>
-    <div class="header">
-        <h2>Music Player</h2>
-        <input type="text" class="search-bar" placeholder="Search songs or playlists...">
-        <button id="register">🔐 Register</button>
-    </div>
     
-    <div class="playlist-section">
-        <h3>Suggested Playlists</h3>
-        <div class="playlist-container" id="playlist-container"></div>
-        <div class="buttons">
-            <button id="create-playlist">➕ Create Playlist</button>
-            <button id="delete-playlist">🗑️ Delete Playlist</button>
+    <header class="header">
+        <h2>MusicPlayer</h2>
+        <input type="text" class="search-bar" id="search-input" placeholder="Search songs, artists, or albums...">
+        <div id="auth-section">
+            <button id="auth-button" class="auth-button">
+                <i class="fas fa-lock"></i>
+                <span id="auth-text">Login</span>
+            </button>
         </div>
-    </div>
+        <div id="user-section" class="user-info hidden">
+            <div class="user-avatar" id="user-avatar">N</div>
+            <span id="username-display">Nour</span>
+            <button id="logout-button" class="auth-button" style="margin-left: 1rem;">
+                <span>Logout</span>
+            </button>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <section class="playlist-section">
+            <h3 class="section-title">Your Playlists</h3>
+            <div class="grid-container" id="playlist-container"></div>
+            <div class="action-buttons hidden" id="playlist-actions">
+                <button id="create-playlist" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Create New Playlist
+                </button>
+                <button id="delete-playlist" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete Playlist
+                </button>
+            </div>
+        </section>
 
-    <div class="suggested-section">
-        <h3>Suggested Songs</h3>
-        <div class="suggested-container" id="suggested-songs">
-            <div class="suggested-item" data-title="Kol Waad" data-artist="Wael Jassar" data-img="Media/kolwaad.jpg" data-audio="Media/Wael Jassar - Koul Waad [ Official Video Clip ] _ وائل جسار - كل وعد.mp3">
-                <img src="./Media/kolwaad.jpg" alt="Song 1">
-                <p>Kol Waad - Wael Jassar</p>
+        <section class="suggested-section">
+            <h3 class="section-title">Recommended For You</h3>
+            <div class="grid-container swipe-container" id="suggested-songs">
+           
             </div>
-            <div class="suggested-item" data-title="Habebe Leh" data-artist="Tula8te" data-img="Media/tul8ate.jpeg" data-audio="Media/habebe-leh.mp3">
-                <img src="./Media/tul8ate.jpeg" alt="Song 2">
-                <p>Habebe Leh - Tula8te</p>
-            </div>
-            <div class="suggested-item" data-title="Tamali Ma'ak" data-artist="Amr Diab" data-img="Media/tamalli ma3ak.jpg" data-audio="Media/tamali-maaak.mp3">
-                <img src="./Media/tamalli ma3ak.jpg" alt="Song 3">
-                <p>Tamali Ma'ak - Amr Diab</p>
-            </div>
-        </div>
-    </div>
-    <div class="popular-artists-section">
-        <h3>Popular Artists</h3>
-        <div class="artist-container">
-            <div class="artist-item">
-                <img src="Media/amrdiab.jpeg" alt="Amr Diab">
-                <p>Amr Diab</p>
-            </div>
-            <div class="artist-item">
-                <img src="Media/tamerhosny.jpg" alt="Tamer Hosny">
-                <p>Tamer Hosny</p>
-            </div>
-            <div class="artist-item">
-                <img src="Media/tamerashour.jpeg" alt="Tamer Ashour">
-                <p>Tamer Ashour</p>
-            </div>
-            <div class="artist-item">
-                <img src="Media/hussienjasmi.jpeg" alt="Hussien Al Jasmi">
-                <p>Hussien Al Jasmi</p>
-            </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="popular-albums-section">
-        <h3>Popular Albums & Singles</h3>
-        <div class="albums-container">
-            <div class="album-item" data-title="Yeah" data-artist="Tamer Ashour" data-img="Media/yeah.jpg" data-audio="Media/yeah.mp3">
-                <img src="Media/yeah.jpg" alt="Yeah">
-                <p>Yeah - Tamer Ashour</p>
+        <section class="popular-artists-section">
+            <h3 class="section-title">Popular Artists</h3>
+            <div class="grid-container swipe-container" id="popular-artists">
+     
             </div>
-            <div class="album-item" data-title="Roma" data-artist="Cairokee" data-img="Media/roma.jpg" data-audio="Media/roma.mp3">
-                <img src="Media/roma.jpeg" alt="Roma">
-                <p>Roma - Cairokee</p>
-            </div>
-        </div>
-    </div>
-    <div class="liked-section" id="liked-section">
-        <h3>Liked Songs</h3>
-        <div class="liked-container" id="liked-container"></div>
-    </div>
-    <div id="music-popup" class="popup">
-        <button id="like-button">
-            <span id="like-icon">🤍</span> Like
-        </button>
+        </section>
+
+        <section class="popular-albums-section">
+            <h3 class="section-title">New Releases</h3>
+            <div class="grid-container swipe-container" id="new-releases">
         
-        <img id="popup-img" src="" alt="Song Cover">
-        <h3 id="popup-title"></h3>
-        <p id="popup-artist"></p>
-        <audio id="popup-audio" controls></audio>
-        <button onclick="prevSong()">⏮ Prev</button>
-        <button onclick="nextSong()">⏭ Next</button>
-        <button onclick="document.getElementById('music-popup').style.display='none'">Close</button>
+            </div>
+        </section>
+
+        <section class="liked-section hidden" id="liked-section">
+            <h3 class="section-title">Your Liked Songs</h3>
+            <div class="grid-container" id="liked-container"></div>
+        </section>
+    </main>
+
+<div class="now-playing-bar" id="now-playing-bar">
+    <div class="now-playing-info">
+        <img id="now-playing-img" src="" alt="Now Playing" class="now-playing-img">
+        <div class="now-playing-text">
+            <div class="now-playing-title" id="now-playing-title">No song selected</div>
+            <div class="now-playing-artist" id="now-playing-artist"></div>
+        </div>
     </div>
-    <div id="overlay"></div>
-    
+    <div class="now-playing-controls">
+        <button id="now-playing-prev"><i class="fas fa-step-backward"></i></button>
+        <button id="now-playing-play"><i class="fas fa-play"></i></button>
+        <button id="now-playing-pause" style="display:none;"><i class="fas fa-pause"></i></button>
+        <button id="now-playing-next"><i class="fas fa-step-forward"></i></button>
+        <button id="now-playing-like"><i class="far fa-heart"></i></button>
+    </div>
+    <div class="now-playing-audio-controls">
+        <span class="time-current" id="time-current">0:00</span>
+        <input type="range" id="progress-bar" class="progress-bar" min="0" max="100" value="0">
+        <span class="time-total" id="time-total">0:00</span>
+        <button id="volume-button" class="volume-button">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <input type="range" id="volume-control" class="volume-control" min="0" max="1" step="0.01" value="0.7">
+    </div>
+    <audio id="now-playing-audio" class="now-playing-audio"></audio>
+</div>
+
+ 
     <div id="register-popup" class="popup">
-        <h3>Login</h3>
+      
         <form id="register-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username">
-            <p class="error-message" id="username-error">Username is required</p>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="Enter your username">
+                <p class="error-message" id="username-error">Username is required</p>
+            </div>
             
-            <label for="password">Password:</label>
-            <input type="password" id="password">
-            <p class="error-message" id="password-error">Password is required</p>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                <p class="error-message" id="password-error">Password is required</p>
+            </div>
     
-            <button type="submit">Login</button>
-            <button type="button" onclick="closePopup('register-popup')">Close</button>
+            <div class="popup-buttons">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" class="btn" onclick="closePopup('register-popup')">Cancel</button>
+            </div>
             
-            <p id="error-message" class="error-message">Invalid credentials!</p>
-            <p>Don't have an account? <a href="#" onclick="openPopup('signup-popup')">Create or Signup</a></p>
+            <p id="login-error-message" class="error-message" style="text-align: center; margin-top: 1rem; display:none;">Invalid credentials!</p>
+            <p style="text-align: center; margin-top: 1rem;">Don't have an account? <a href="#" onclick="switchToSignup()" style="color: var(--primary-color);">Sign up</a></p>
         </form>
     </div>
     
     <div id="signup-popup" class="popup">
-        <h3>Sign Up</h3>
+        <h3>Create Your Account</h3>
         <form id="signup-form">
-            <label for="new-username">Username:</label>
-            <input type="text" id="new-username">
-            <p class="error-message" id="new-username-error">Username is required</p>
+            <div class="form-group">
+                <label for="new-username">Username</label>
+                <input type="text" id="new-username" class="form-control" placeholder="Choose a username">
+                <p class="error-message" id="new-username-error">Username is required</p>
+            </div>
     
-            <label for="email">Email:</label>
-            <input type="email" id="email">
-            <p class="error-message" id="email-error">Valid email is required</p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                <p class="error-message" id="email-error">Valid email is required</p>
+            </div>
     
-            <label for="new-password">Password:</label>
-            <input type="password" id="new-password">
-            <p class="error-message" id="new-password-error">Password is required</p>
+            <div class="form-group">
+                <label for="new-password">Password</label>
+                <input type="password" id="new-password" class="form-control" placeholder="Create a password">
+                <p class="error-message" id="new-password-error">Password is required</p>
+            </div>
     
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password">
-            <p class="error-message" id="confirm-password-error">Passwords do not match</p>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password">
+                <p class="error-message" id="confirm-password-error">Passwords do not match</p>
+            </div>
     
-            <button type="submit">Sign Up</button>
-            <button type="button" onclick="closePopup('signup-popup')">Back to Login</button>
+            <div class="popup-buttons">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button type="button" class="btn" onclick="switchToLogin()">Back to Login</button>
+            </div>
         </form>
+    </div>
+
+    <div id="playlist-popup" class="popup">
+        <h3 id="playlist-popup-title">Create New Playlist</h3>
+        <form id="playlist-form">
+            <div class="form-group">
+                <label for="playlist-name">Playlist Name</label>
+                <input type="text" id="playlist-name" class="form-control" placeholder="Enter playlist name">
+                <p class="error-message" id="playlist-name-error">Playlist name is required</p>
+            </div>
+            
+            <div class="popup-buttons">
+                <button type="submit" class="btn btn-primary" id="playlist-submit-btn">Create</button>
+                <button type="button" class="btn" onclick="closePopup('playlist-popup')">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 MusicPlayer. All rights reserved.</p>
+    </footer>
+
     <script src="script.js"></script>
-    
 </body>
 </html>
