@@ -37,9 +37,7 @@
                 <button id="create-playlist" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Create New Playlist
                 </button>
-                <button id="delete-playlist" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> Delete Playlist
-                </button>
+             
             </div>
         </section>
 
@@ -173,6 +171,29 @@
         </form>
     </div>
 
+<div id="playlist-songs-popup" class="popup">
+    <h3 id="playlist-songs-title">Playlist Songs</h3>
+    <div id="playlist-songs-container" class="playlist-songs-container">
+        <div class="empty-playlist">
+            <i class="fas fa-music" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+            <p>No songs available in this playlist</p>
+            <div class="playlist-actions">
+                <button id="add-songs-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Songs
+                </button>
+                <button id="share-playlist-btn" class="btn">
+                    <i class="fas fa-share"></i> Share
+                </button>
+                <button id="delete-playlist-btn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="popup-buttons">
+        <button type="button" class="btn" onclick="closePopup('playlist-songs-popup')">Close</button>
+    </div>
+</div>
     <footer class="footer">
         <p>&copy; 2023 MusicPlayer. All rights reserved.</p>
     </footer>

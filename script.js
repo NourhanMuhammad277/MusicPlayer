@@ -480,7 +480,7 @@ function updateVolumeIcon(volume) {
     }
 }
 
-// Play a specific song
+
 function playSong(song) {
     currentSongIndex = songs.findIndex(s => 
         s.title === song.title && s.artist === song.artist
@@ -590,7 +590,64 @@ function updateUIForUser() {
     }
 }
 
-// Load sample playlists for demo user
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    document.getElementById('playlist-container').addEventListener('click', function(e) {
+        const playlistCard = e.target.closest('.card');
+        if (playlistCard) {
+            const playlistId = playlistCard.dataset.id;
+            const playlistName = playlistCard.querySelector('.card-title').textContent;
+            openPlaylistSongsPopup(playlistId, playlistName);
+        }
+    });
+    
+    
+    document.getElementById('add-songs-btn').addEventListener('click', function() {
+        alert('Add songs functionality will go here');
+        // You would implement a song selection UI here
+    });
+    
+    // Share playlist button handler
+    document.getElementById('share-playlist-btn').addEventListener('click', function() {
+        alert('Share playlist functionality will go here');
+        // You would implement sharing functionality here
+    });
+    document.getElementById('delete-playlist-btn').addEventListener('click', function() {
+        if (confirm('Are you sure you want to delete this playlist?')) {
+       
+            alert('Playlist deleted');
+            closePopup('playlist-songs-popup');
+        }
+    });
+});
+
+function openPlaylistSongsPopup(playlistId, playlistName) {
+    document.getElementById('playlist-songs-title').textContent = playlistName;
+    
+    document.getElementById('playlist-songs-container').innerHTML = `
+        <div class="empty-playlist">
+            <i class="fas fa-music" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+            <p>No songs available in this playlist</p>
+            <div class="playlist-actions">
+                <button id="add-songs-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Songs
+                </button>
+                <button id="share-playlist-btn" class="btn">
+                    <i class="fas fa-share"></i> Share
+                </button>
+                <button id="delete-playlist-btn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+    `;
+    
+ 
+
+    
+    openPopup('playlist-songs-popup');
+}
 function loadSamplePlaylists() {
     if (currentUser && currentUser.username === 'nour') {
         const savedPlaylists = localStorage.getItem('nourPlaylists');
@@ -620,7 +677,7 @@ function loadLikedSongs() {
     }
 }
 
-// Render playlists to the UI
+
 function renderPlaylists() {
     playlistContainer.innerHTML = '';
     
@@ -701,7 +758,6 @@ function handleLogin() {
     }
 }
 
-// Handle signup form submission
 function handleSignup() {
     const username = document.getElementById('new-username').value.trim();
     const email = document.getElementById('email').value.trim();
