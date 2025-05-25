@@ -448,6 +448,21 @@ body {
     overflow-y: auto;
     margin-bottom: 1rem;
 }
+.navbar-links {
+    display: flex;
+    gap: 1rem;
+    margin-left: 2rem;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.navbar-links a:hover {
+    text-decoration: underline;
+}
 
 .empty-playlist {
     text-align: center;
@@ -607,4 +622,51 @@ body {
         width: 100%;
         padding: 0;
     }
+}
+.about-section, .help-section {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.about-section h1,
+.help-section h1 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #222;
+}
+
+.about-section h2,
+.help-section h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: #444;
+}
+
+.about-section ul, 
+.help-section ul, 
+.help-section ol {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 1rem;
+    margin-left: 2rem;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+    color: #ff4081; /* accent color */
 }

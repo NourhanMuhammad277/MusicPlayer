@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>World of Music | Anghami</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a5fd5;
+      --secondary: #9C27B0;
+      --dark: #1092d8;
+      --light: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--light);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: url('Media/music.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Removed dark overlay */
+    body::before {
+      content: none;
+    }
+
+    .music-note {
+      position: absolute;
+      opacity: 0.6;
+      animation: floatNote 8s linear infinite;
+      font-size: 1.5rem;
+      z-index: 1;
+    }
+
+    @keyframes floatNote {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10%, 90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: white;
+      color: #111;
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: pulse 3s infinite;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    .visualizer {
+      width: 100%;
+      max-width: 500px;
+      height: 100px;
+      margin: 2rem auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .bar {
+      background: linear-gradient(to top, var(--primary), var(--secondary));
+      width: 8px;
+      border-radius: 5px;
+      animation: equalize 1.5s infinite ease-in-out;
+      animation-delay: calc(var(--i) * 0.1s);
+    }
+
+    @keyframes equalize {
+      0%, 100% { height: 20%; }
+      50% { height: 90%; }
+    }
+
+    .start-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 20px rgba(29, 185, 84, 0.3);
+    }
+
+    .start-button:hover {
+      background: #1ed760;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(29, 185, 84, 0.5);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
+      background: rgba(18, 18, 18, 0.8);
+      text-align: center;
+      z-index: 3;
+      backdrop-filter: blur(5px);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .tagline {
+        font-size: 1.1rem;
+      }
+
+      .start-button {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+
+      .card {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Music Notes -->
+  <div class="music-note" style="left: 10%; top: 20%;">♪</div>
+  <div class="music-note" style="left: 25%; top: 50%; animation-delay: 1s;">♫</div>
+  <div class="music-note" style="left: 75%; top: 30%; animation-delay: 2s;">♩</div>
+  <div class="music-note" style="left: 50%; top: 70%; animation-delay: 3s;">♬</div>
+  <div class="music-note" style="left: 85%; top: 60%; animation-delay: 4s;">♪</div>
+
+  <div class="container">
+    <div class="card">
+      <h1>WORLD OF MUSIC</h1>
+      <p class="tagline">Discover. Stream. Experience.</p>
+
+      <div class="visualizer">
+        <div class="bar" style="--i:0;"></div>
+        <div class="bar" style="--i:1;"></div>
+        <div class="bar" style="--i:2;"></div>
+        <div class="bar" style="--i:3;"></div>
+        <div class="bar" style="--i:4;"></div>
+        <div class="bar" style="--i:5;"></div>
+        <div class="bar" style="--i:6;"></div>
+        <div class="bar" style="--i:7;"></div>
+        <div class="bar" style="--i:8;"></div>
+        <div class="bar" style="--i:9;"></div>
+      </div>
+
+      <button class="start-button" onclick="window.location.href='musicplayer.html'">Start Your Journey</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    Cookies help us deliver our services. By continuing to use World of Music, you agree to using cookies described in our Privacy Policy.
+    <br>© 2025 World of Music | Music Player
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const notes = ['♪', '♫', '♩', '♬'];
+      const colors = ['#1DB954', '#9C27B0', '#2196F3', '#FF9800'];
+
+      for (let i = 0; i < 10; i++) {
+        const note = document.createElement('div');
+        note.className = 'music-note';
+        note.textContent = notes[Math.floor(Math.random() * notes.length)];
+        note.style.left = Math.random() * 100 + '%';
+        note.style.top = Math.random() * 100 + '%';
+        note.style.animationDelay = Math.random() * 5 + 's';
+        note.style.color = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(note);
+      }
+    });
+  </script>
+</body>
+</html>
